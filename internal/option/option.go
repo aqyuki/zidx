@@ -1,12 +1,18 @@
 package option
 
-import flag "github.com/spf13/pflag"
+import (
+	flag "github.com/spf13/pflag"
+)
 
 // Option is a struct that holds application options.
 // Option is built from command line arguments.
 type Option struct {
 	// ShowHelp is a flag
 	ShowHelp bool
+
+	// ArticlePath is the path to the article directory.
+	// default : `./articles`
+	ArticlePath string
 
 	// Filename sets which file the generated table of contents is output to.
 	// default : `Index.md`
@@ -21,6 +27,7 @@ func New() *Option {
 	var opts Option
 
 	flag.BoolVarP(&opts.ShowHelp, "help", "h", false, "show help")
+	flag.StringVar(&opts.ArticlePath, "article-dir", "./articles", "path to the article directory")
 	flag.StringVarP(&opts.Filename, "filename", "f", "Index.md", "output filename")
 	flag.StringVarP(&opts.Username, "username", "u", "", "Zenn username")
 
