@@ -20,6 +20,31 @@ func main() {
 func run() error {
 	ops := option.New()
 
+	if ops.ShowHelp {
+		usage()
+		return nil
+	}
+	return exec(ops)
+}
+
+func usage() {
+	fmt.Printf(`zidx generates a table of contents for Zenn articles.
+
+Usage: zidx [options]
+
+Options:
+  -h, --help       Show help
+  --article-dir    Path to the article directory (default: ./articles)
+  -f, --filename   Output filename (default: toc.md)
+  -u, --username   Zenn username (required)
+`)
+}
+
+func exec(ops *option.Option) error {
+	if ops.Username == "" {
+		return fmt.Errorf("username is required")
+	}
+
 	metas, err := article.Load(ops.ArticlePath, ops.Username)
 	if err != nil {
 		return fmt.Errorf("failed to load articles: %w", err)
