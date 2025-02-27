@@ -16,7 +16,7 @@ func TestNew(t *testing.T) {
 		want := &Option{
 			ShowHelp:    false,
 			ArticlePath: "./articles",
-			Filename:    "Index.md",
+			Filename:    "toc.md",
 			Username:    "",
 		}
 
