@@ -15,7 +15,7 @@ type Option struct {
 	ArticlePath string
 
 	// Filename sets which file the generated table of contents is output to.
-	// default : `Index.md`
+	// default : `toc.md`
 	Filename string
 
 	// Username specifies the Zenn username.
@@ -42,7 +42,7 @@ func New() *Option {
 func init() {
 	flag.BoolVarP(&showHelp, "help", "h", false, "show help")
 	flag.StringVar(&articlePath, "article-dir", "./articles", "path to the article directory")
-	flag.StringVarP(&filename, "filename", "f", "Index.md", "output filename")
+	flag.StringVarP(&filename, "filename", "f", "toc.md", "output filename")
 	flag.StringVarP(&username, "username", "u", "", "Zenn username")
 	flag.Parse()
 }
