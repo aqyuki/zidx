@@ -14,9 +14,10 @@ func TestNew(t *testing.T) {
 
 		got := New()
 		want := &Option{
-			ShowHelp: false,
-			Filename: "Index.md",
-			Username: "",
+			ShowHelp:    false,
+			ArticlePath: "./articles",
+			Filename:    "Index.md",
+			Username:    "",
 		}
 
 		if diff := cmp.Diff(got, want); diff != "" {
