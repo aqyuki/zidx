@@ -23,17 +23,26 @@ type Option struct {
 	Username string
 }
 
+var (
+	showHelp    bool
+	articlePath string
+	filename    string
+	username    string
+)
+
 func New() *Option {
-	var opts Option
-
-	flag.BoolVarP(&opts.ShowHelp, "help", "h", false, "show help")
-	flag.StringVar(&opts.ArticlePath, "article-dir", "./articles", "path to the article directory")
-	flag.StringVarP(&opts.Filename, "filename", "f", "Index.md", "output filename")
-	flag.StringVarP(&opts.Username, "username", "u", "", "Zenn username")
-
-	return &opts
+	return &Option{
+		ShowHelp:    showHelp,
+		ArticlePath: articlePath,
+		Filename:    filename,
+		Username:    username,
+	}
 }
 
 func init() {
+	flag.BoolVarP(&showHelp, "help", "h", false, "show help")
+	flag.StringVar(&articlePath, "article-dir", "./articles", "path to the article directory")
+	flag.StringVarP(&filename, "filename", "f", "Index.md", "output filename")
+	flag.StringVarP(&username, "username", "u", "", "Zenn username")
 	flag.Parse()
 }
